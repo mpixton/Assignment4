@@ -1,0 +1,51 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Add A Recommendation";
+}
+
+@using Restaurants.Models;
+@model Recommendation;
+
+<div class="container col-6">
+    <div class="col-4">
+        <form asp-controller="Home" asp-action="AddRecommendation" method="post">
+            <div class="row my-2">
+                <div class="col">
+                    @Html.LabelFor(r => r.Submitter)
+                </div>
+                <div class="col">
+                    @Html.EditorFor(r => r.Submitter)
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col">
+                    @Html.LabelFor(r => r.Name)
+                </div>
+                <div class="col">
+                    @Html.EditorFor(r => r.Name)
+                </div>
+                <div class="col">
+                    @Html.ValidationMessageFor(r => r.Name)
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col">
+                    @Html.LabelFor(r => r.FavDish)
+                </div>
+                <div class="col">
+                    @Html.EditorFor(r => r.FavDish)
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col">
+                    @Html.LabelFor(r => r.PhoneNumber)
+                </div>
+                <div class="col">
+                    @Html.EditorFor(r => r.PhoneNumber)
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

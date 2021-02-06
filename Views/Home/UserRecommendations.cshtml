@@ -1,0 +1,41 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "All Recommendations";
+}
+
+@using Restaurants.Models;
+@model IEnumerable<Recommendation>;
+
+<div class="col-10">
+    @if (ViewData["Added"])
+    {
+        <h3 class="text-center">Thank you for adding a recommendation!</h3>
+        <p class="text-center">Feel free to browse all user recommendations listed below.</p>
+    }
+
+    <table>
+        <thead class="container col-lg-8">
+            <tr class="row">
+                <th class="col-1 text-center">Submitted By</th>
+                <th class="col-1 text-center">Name</th>
+                <th class="col-1 text-center">Favorite Dish</th>
+                <th class="col-1 text-center">Phone Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Recommendation r in Model)
+            {
+                <tr class="row">
+                    <td class="col-1">@r.Submitter</td>
+                    <td class="col-1">@r.Name</td>
+                    <td class="col-1">@r.FavDish</td>
+                    <td class="col-1">@r.PhoneNumber</td>
+                </tr>
+
+            }
+
+        </tbody>
+    </table>
+</div>
