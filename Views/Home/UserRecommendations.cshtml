@@ -6,32 +6,33 @@
 }
 
 @using Restaurants.Models;
-@model IEnumerable<Recommendation>;
+@model IEnumerable<UserRecommendation>;
 
-<div class="col-10">
-    @if (ViewData["Added"])
+<div class="container">
+    @if ((bool)ViewData["Added"] == true)
     {
-        <h3 class="text-center">Thank you for adding a recommendation!</h3>
-        <p class="text-center">Feel free to browse all user recommendations listed below.</p>
+        <h3>Thank you for your addition.</h3>
+        <p>View all other user's recommendations below.</p>
+        <br /><br />
     }
 
-    <table>
-        <thead class="container col-lg-8">
+    <table class="container table">
+        <thead class="col-12">
             <tr class="row">
-                <th class="col-1 text-center">Submitted By</th>
-                <th class="col-1 text-center">Name</th>
-                <th class="col-1 text-center">Favorite Dish</th>
-                <th class="col-1 text-center">Phone Number</th>
+                <th class="col-4 text-center">Submitted By</th>
+                <th class="col-3 text-center">Name</th>
+                <th class="col-3 text-center">Favorite Dish</th>
+                <th class="col-2 text-center">Phone Number</th>
             </tr>
         </thead>
-        <tbody>
-            @foreach (Recommendation r in Model)
+        <tbody class="col-12">
+            @foreach (UserRecommendation r in Model)
             {
                 <tr class="row">
-                    <td class="col-1">@r.Submitter</td>
-                    <td class="col-1">@r.Name</td>
-                    <td class="col-1">@r.FavDish</td>
-                    <td class="col-1">@r.PhoneNumber</td>
+                    <td class="col-4">@r.Submitter</td>
+                    <td class="col-3">@r.Name</td>
+                    <td class="col-3">@r.FavDish</td>
+                    <td class="col-2">@r.PhoneNumber</td>
                 </tr>
 
             }

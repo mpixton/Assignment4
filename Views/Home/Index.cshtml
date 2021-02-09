@@ -2,37 +2,15 @@
     ViewData["Title"] = "Home Page";
 }
 
-@using Restaurants.Models
-@model IEnumerable<Recommendation>
+@model IEnumerable<string>
 
-<div class="col-10">
+<div class="container">
     <h3 class="text-center">Welcome</h3>
     <p class="text-center">These are the top 5 restaurant recommendations for Provo, Utah, as determined by me.</p>
-
-    <table>
-        <thead class="container col-lg-8">
-            <tr class="row">
-                <th class="col-1 text-center">Rank</th>
-                <th class="col-1 text-center">Name</th>
-                <th class="col-1 text-center">Favorite Dish</th>
-                <th class="col-1 text-center">Address</th>
-                <th class="col-1 text-center">Phone Number</th>
-                <th class="col-1 text-center">Website Link</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (Recommendation r in Model)
-            {
-            <tr class="row">
-                <td class="col-1">@r.Rank</td>
-                <td class="col-1">@r.Name</td>
-                <td class="col-1">@r.FavDish</td>
-                <td class="col-1">@r.Address</td>
-                <td class="col-1">@r.PhoneNumber</td>
-                <td class="col-1">@r.WebsiteLink</td>
-            </tr>    
-            }
-            
-        </tbody>
-    </table>
+    <ul class="list-unstyled">
+        @foreach (string s in Model)
+        {
+        <li>@s</li>   
+        }
+    </ul>
 </div>

@@ -8,15 +8,15 @@ namespace Restaurants.Models
 {
     public class RecommendationStorage
     {
-        private static List<Recommendation> recommendations = new List<Recommendation>();
+        private static List<UserRecommendation> recommendations = new List<UserRecommendation>();
 
-        public static IEnumerable<Recommendation> Recommendations => recommendations;
+        public static IEnumerable<UserRecommendation> Recommendations => recommendations;
 
         /// <summary>
         /// Adds a Recommendation to memory storage.
         /// </summary>
         /// <param name="Rec">Restaurant Recommendation to add.</param>
-        public static void AddRecommendation(Recommendation Rec)
+        public static void AddRecommendation(UserRecommendation Rec)
         {
             recommendations.Add(Rec);
         }

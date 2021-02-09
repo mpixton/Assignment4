@@ -22,44 +22,12 @@ namespace Restaurants.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            List<Recommendation> Top5 = new List<Recommendation>();
+            List<string> Top5 = new List<string>();
 
-            Top5[0] = new Recommendation(
-                rank: 1,
-                name: "Cafe Rio",
-                address: "2244 University Pkwy, Provo, UT 84604",
-                phone: "(801) 375-5133)",
-                dish: "Sweet Pork Burrito"
-                );
-
-            Top5[1] = new Recommendation(
-                rank: 2,
-                name: "Bombay House",
-                address: "463 N University Ave, Provo, UT 84604",
-                link: "bombayhouse.com"
-                );
-
-            Top5[2] = new Recommendation(
-                rank: 3, 
-                name: "Costco Food Court",
-                address: "648 E 800 S, Orem, UT 84097",
-                dish: "Pizza Slice"
-                );
-
-            Top5[3] = new Recommendation(
-                rank: 4,
-                name: "MOA Cafe",
-                address: "500 Campus Dr, Provo, UT 84602",
-                link: "dining.byu.edu",
-                phone: "(801) 422-6990"
-                );
-
-            Top5[4] = new Recommendation(
-                rank: 5,
-                name: "The Skyroom Restaurant",
-                address: "Ernest L Wilkinson Student Center, 6th Floor, Provo, UT 84602",
-                phone: "(801) 422-9020"
-                );
+            foreach(Top5Recommendation rec in Top5Recommendation.GetTop5())
+            {
+                Top5.Add($"#{rec.Rank}- {rec.Name} {rec.Address} {rec.PhoneNumber} {rec.FavDish ?? "It's all good!"} {rec.WebsiteLink}");
+            }
 
             return View(Top5);
         }
@@ -73,13 +41,13 @@ namespace Restaurants.Controllers
 
         // POST: /AddRecomendation
         [HttpPost("AddRecommendation")]
-        public IActionResult AddRecomendation(Recommendation rec)
+        public IActionResult AddRecommendation(UserRecommendation rec)
         {
             if (ModelState.IsValid)
             {
                 RecommendationStorage.AddRecommendation(rec);
                 ViewData["Added"] = true;
-                return View("UserRecommendations");
+                return View("UserRecommendations", RecommendationStorage.Recommendations);
             }
             else
             {
@@ -92,7 +60,7 @@ namespace Restaurants.Controllers
         public IActionResult UserRecommendations()
         {
             ViewData["Added"] = false;
-            return View(RecommendationStorage.Recommendations);
+            return View("UserRecommendations", RecommendationStorage.Recommendations);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
