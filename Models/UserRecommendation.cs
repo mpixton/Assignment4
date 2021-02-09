@@ -28,7 +28,7 @@ namespace Restaurants.Models
         }
 
         /// <summary>
-        /// Parameterless constructor
+        /// Parameterless constructor, used by the app to create objects from the view.
         /// </summary>
         public UserRecommendation() { }
 
@@ -36,19 +36,21 @@ namespace Restaurants.Models
         /// The name of the person submitting the Recommendation.
         /// </summary>
         [Required]
+        [Display(Name = "Your Name")]
         public string Submitter { get; set; }
 
         /// <summary>
         /// Name of the restaurant.
         /// </summary>
         [Required]
+        [Display(Name = "Restaurant Name")]
         public string Name { get; set; }
 
         /// <summary>
         /// The submitter's favorite dish at the restaurant.
-        /// Default: "It's All Tasty!"
         /// </summary>
         [Required]
+        [Display(Name = "Favorite Dish")]
         public string FavDish { get; set; }
 
         /// <summary>
@@ -57,6 +59,7 @@ namespace Restaurants.Models
         [Required(ErrorMessage = "Phone must be in format: (###) ###-####")]
         [RegularExpression(@"^\([\d]{3}\) [\d]{3}-[\d]{4}$",
             ErrorMessage ="Phone must be in format: (###) ###-####")]
+        [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
     }
 }
